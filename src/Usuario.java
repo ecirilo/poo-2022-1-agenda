@@ -22,7 +22,13 @@ public class Usuario {
 		return email;
 	}
 
-	public void setEmail(String email) {		
+	public void setEmail(String email) throws EmailInvalidoException, DominioException {
+		if (!email.contains("@")) {
+			throw new EmailInvalidoException(email);
+		} else if (!email.contains(".com")) {
+			throw new DominioException();
+		}
+		
 		this.email = email;
 	}
 

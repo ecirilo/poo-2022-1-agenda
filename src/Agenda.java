@@ -1,19 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Agenda {
 
-	private Compromisso[] compromissos = new Compromisso[100];
-	private Integer numCompromissos = 0;
+	private List<Compromisso> compromissos = new ArrayList<>();
 	
 	public void adicionarCompromisso(Compromisso compromisso) {
-		compromissos[numCompromissos++ ] = compromisso;
+		compromissos.add(compromisso);
+	}
+	
+	public List<Compromisso> getCompromissos() {
+		return compromissos;
 	}
 	
 	public String toString() {
 		String conteudo = "";
 				
 		conteudo += "========\n";
-		for (int x = 0; x < numCompromissos; x++) {
-			conteudo += compromissos[x].toString() + "\n";
+		for (Compromisso compromisso: compromissos) {
+			conteudo += compromisso.toString() + "\n";
 		}
 		conteudo += "========\n";
 		

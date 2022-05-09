@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Programa {
 	
@@ -50,7 +51,10 @@ public class Programa {
 		System.out.print("Entre com o ID do usuário: ");
 		Integer idUsuario = Integer.parseInt(Console.readLine());
 		
-		System.out.println(usuarios[idUsuario].getAgenda().toString());
+		List<Compromisso> compromissos = usuarios[idUsuario].getAgenda().getCompromissos();
+		for (int x = 0; x < compromissos.size(); x++) {
+			System.out.println(compromissos.get(x).toString());
+		}		
 	}
 	
 	public static void listarUsuarios() {
@@ -70,11 +74,15 @@ public class Programa {
 		System.out.print("Entre com email: ");
 		String email = Console.readLine();
 		
-		Usuario usuario = new Usuario();
-		usuario.setNome(nome);
-		usuario.setEmail(email);
-		
-		usuarios[numUsuarios++] = usuario;
+		try {
+			Usuario usuario = new Usuario();
+			usuario.setNome(nome);
+			usuario.setEmail(email);
+			
+			usuarios[numUsuarios++] = usuario;
+		} catch (EmailInvalidoException | DominioException e) {
+			System.out.print("Email inválido!");
+		}
 	}
 	
 	public static void adicionarReuniao() {
